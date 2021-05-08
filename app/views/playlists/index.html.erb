@@ -1,0 +1,72 @@
+<p id="notice"><%= notice %></p>
+
+
+<style>
+
+.vertical-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background-color: rgba(250, 237, 237, 0.9);
+  border-radius:30px 30px 30px 30px;
+}
+</style>
+  <div class="vertical-center">
+    <p style="font-weight: bold;text-align:center; font-size:20px; ">Bienvenue sur Play n Watch. Ici, tu peux partager tes meilleures playlist Youtube, et consulter toutes celles de la communauté !</p>
+  </div>
+  <thead>
+  </thead>
+
+  <tbody >
+    <div class="row" style="margin-top:2em;padding:2em;background-color: rgba(250, 237, 237, 0.9);border-radius:30px 30px 30px 30px;height:auto;">
+      <h1 style="margin: 50px;">Les dernières playlists</h1>
+  <% @playlists.order("created_at DESC").each do |playlist|
+      case playlist.category
+      when "musique"%>
+        <div class="col-sm-3">
+          <div id="bordure" class="card" style="width: 18rem; border-color:red;background-color:#ffd1d1">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align:center"><%= playlist.title %></h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"style="color:red;background-color:#ffd1d1"><%= playlist.category %></li>
+              <li class="list-group-item"style="background-color:#ffd1d1"><a href=<%= playlist.link %> class="card-link">Lien</a></li>
+              <li class="list-group-item"style="background-color:#ffd1d1"><%= link_to 'Supprimer', playlist, method: :delete, data: { confirm: 'Êtes-vous sûr(e)?' } %></li>
+            </ul>
+          </div>
+        </div><%
+
+      when "jeux"%>
+        <div class="col-sm-3">
+          <div id="bordure" class="card" style="width: 18rem; border-color:green;background-color:#b8e6b8">
+            <div class="card-body">
+              <h5 class="card-title"style="text-align:center"><%= playlist.title %></h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"style="color:green;background-color:#b8e6b8"><%= playlist.category %></li>
+              <li class="list-group-item"style="background-color:#b8e6b8"><a href=<%= playlist.link %> class="card-link">Lien</a></li>
+              <li class="list-group-item"style="background-color:#b8e6b8"><%= link_to 'Supprimer', playlist, method: :delete, data: { confirm: 'Êtes-vous sûr(e)?' } %></li>
+            </ul>
+          </div>
+        </div><%
+
+      when "film"%>
+        <div class="col-sm-3" >
+          <div id="bordure" class="card" style="width: 18rem; border-color:blue;background-color:#b8bae6">
+            <div class="card-body">
+              <h5 class="card-title"style="text-align:center"><%= playlist.title %></h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"style="color:blue;background-color:#b8bae6"><%= playlist.category %></li>
+              <li class="list-group-item"style="background-color:#b8bae6"><a href=<%= playlist.link %> class="card-link">Lien</a></li>
+              <li class="list-group-item"style="background-color:#b8bae6"><%= link_to 'Supprimer', playlist, method: :delete, data: { confirm: 'Êtes-vous sûr(e)?' } %></li>
+            </ul>
+          </div>
+        </div><%
+      end
+    end %>
+    </div>
+  </tbody>
+
+<br>

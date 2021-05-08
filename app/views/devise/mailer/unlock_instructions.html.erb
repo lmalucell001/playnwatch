@@ -1,0 +1,7 @@
+<p>Bonjour <%= @resource.email %>!</p>
+
+<p>Votre compte a été verrouillé du à un trop grand nobre tentative de connxions ratés.</p>
+
+<p>Clickez sur ce lien pour le déverrouiller</p>
+
+<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
